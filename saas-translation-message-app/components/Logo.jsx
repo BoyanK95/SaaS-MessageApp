@@ -1,8 +1,6 @@
-
+import Link from "next/link";
 function Logo() {
-  return (
-    <Link>Logo</Link>
-  )
+  return <Link href="/">Go Home</Link>;
 }
 
-export default Logo
+export default Logo;

@@ -1,7 +1,11 @@
+import Logo from './Logo'
+
 function Header() {
   return (
     <header>
-      <nav>Header</nav>
+      <nav>
+        <Logo />
+      </nav>
     </header>
   );
 }
