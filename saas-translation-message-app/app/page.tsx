@@ -1,10 +1,9 @@
-import Image from 'next/image'
-import Header from '../components/Header'
+import React from "react";
 
 export default function Home() {
   return (
     <main className="">
-    <h1>Saas App</h1>
+      <h1>Saas App</h1>
     </main>
-  )
+  );
 }

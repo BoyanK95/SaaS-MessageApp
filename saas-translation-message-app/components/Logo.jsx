@@ -16,7 +16,7 @@ function Logo() {
             src={LogoImage}
             alt="white-logo-image"
             priority
-            className="roundef-full dark:filter dark:invert"
+            className="rounded-full dark:filter dark:invert"
           />
         </AspectRatio>
       </div>
