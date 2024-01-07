@@ -12,6 +12,7 @@ function Logo() {
           ratio={16 / 9}
           className="flex items-center justify-center"
         >
+          <p className="font-bold p-3 dark:filter dark:invert">Deal Me</p>
           <Image
             src={LogoImage}
             alt="white-logo-image"
