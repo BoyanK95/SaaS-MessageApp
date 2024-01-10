@@ -1,6 +1,6 @@
 import Logo from "./Logo";
-import DarkModeToggle from "./ui/DarkModeToggle";
-import UserButton from "./ui/UserButton";
+import DarkModeToggle from "./DarkModeToggle";
+import UserButton from "./UserButton";
 
 function Header() {
   return (
