@@ -13,7 +13,6 @@ function Header() {
           {/* Seassion && ... */}
 
           <DarkModeToggle />
-
           <UserButton />
         </div>
       </nav>
