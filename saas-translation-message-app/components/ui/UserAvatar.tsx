@@ -20,7 +20,7 @@ const UserAvatar = ({
         <Image
           src={
             image ||
-            "https://icons.veryicon.com/png/o/miscellaneous/administration/account-25.png" 
+            "https://icons.veryicon.com/png/o/miscellaneous/administration/account-25.png"
           }
           alt={name || "profile-image"}
           width={40}
@@ -28,7 +28,7 @@ const UserAvatar = ({
           className="rounded-full"
         />
       )}
-      <AvatarFallback className="bg-white text-black">
+      <AvatarFallback delayMs={1000} className="bg-white text-black">
         {name
           ? name
               .split(" ")
