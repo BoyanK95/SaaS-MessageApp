@@ -1,7 +1,7 @@
 import LogoImage from "@logos/white-chat-logo.gif";
 import StaticLogoImage from '@logos/logo-chat-static.png'
 import Link from "next/link";
-import { AspectRatio } from "./ui/aspect-ratio";
+import { AspectRatio } from "./aspect-ratio";
 import Image from "next/image";
 
 function Logo() {
