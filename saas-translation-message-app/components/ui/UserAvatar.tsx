@@ -18,7 +18,10 @@ const UserAvatar = ({
     <Avatar className={cn("bg-white text-black", className)}>
       {image && (
         <Image
-          src={image}
+          src={
+            image ||
+            "https://icons.veryicon.com/png/o/miscellaneous/administration/account-25.png" 
+          }
           alt={name || "profile-image"}
           width={40}
           height={40}
@@ -26,13 +29,12 @@ const UserAvatar = ({
         />
       )}
       <AvatarFallback className="bg-white text-black">
-        <Image
-          src="https://icons.veryicon.com/png/o/miscellaneous/administration/account-25.png"
-          alt="fallback-image"
-          width={40}
-          height={40}
-        />
-        {/* Pr */}
+        {name
+          ? name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+          : "PR"}
       </AvatarFallback>
     </Avatar>
   );

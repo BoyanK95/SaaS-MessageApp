@@ -17,7 +17,7 @@ const UserButton = () => {
       <DropdownMenuTrigger>
         <UserAvatar
           name="Boyan Koychev"
-        //   image="https://github.com/shadcn.png"
+          image="https://github.com/shadcn.png"
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
