@@ -3,6 +3,8 @@ import DarkModeToggle from "./DarkModeToggle";
 import UserButton from "./UserButton";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth";
+import Link from "next/link";
+import { MessagesSquareIcon } from "lucide-react";
 
 async function Header() {
   const session = await getServerSession(authOptions);
@@ -15,8 +17,13 @@ async function Header() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           {/* Language selet */}
 
-          {/* Seassion && ... */}
-
+          {session && (
+            <>
+              <Link href={`/chat`} prefetch={false}>
+                <MessagesSquareIcon className="text-black dark:text-white" />
+              </Link>
+            </>
+          )}
           <DarkModeToggle />
           <UserButton />
         </div>
