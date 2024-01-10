@@ -11,11 +11,11 @@ export default function ClientProvider({
     <SessionProvider
       //   session={session}
       // Default base path if your app lives at the root "/"
-      basePath="/"
+    //   basePath="/"
       // Re-fetch session every 5 minutes
-      refetchInterval={5 * 60}
+    //   refetchInterval={5 * 60}
       // Re-fetches session when window is focused
-      refetchOnWindowFocus={true}
+    //   refetchOnWindowFocus={true}
     >
       {children}
     </SessionProvider>

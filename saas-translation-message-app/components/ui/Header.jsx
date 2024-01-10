@@ -28,7 +28,7 @@ async function Header() {
             </Link>
           )}
           <DarkModeToggle />
-          <UserButton />
+          <UserButton session={session}/>
         </div>
       </nav>
       {/* Upgrade Banner */}
