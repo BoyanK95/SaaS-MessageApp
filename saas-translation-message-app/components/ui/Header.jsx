@@ -17,12 +17,16 @@ async function Header() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           {/* Language selet */}
 
-          {session && (
+          {session ? (
             <>
               <Link href={`/chat`} prefetch={false}>
                 <MessagesSquareIcon className="text-black dark:text-white" />
               </Link>
             </>
+          ) : (
+            <Link href={"/pricing"} prefix={false}>
+              Pricing
+            </Link>
           )}
           <DarkModeToggle />
           <UserButton />
