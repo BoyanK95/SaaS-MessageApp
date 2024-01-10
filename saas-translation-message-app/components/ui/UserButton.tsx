@@ -16,6 +16,8 @@ import { Button } from "./button";
 import { signIn } from "next-auth/react";
 
 const UserButton = ({ session }: { session: Session }) => {
+  console.log(session);
+
   if (!session) {
     return (
       <Button variant={"outline"} onClick={() => signIn()}>
@@ -27,10 +29,7 @@ const UserButton = ({ session }: { session: Session }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserAvatar
-          name="Boyan Koychev"
-          image="https://github.com/shadcn.png"
-        />
+        <UserAvatar name={session.user?.name!} image={session.user?.image!} />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
