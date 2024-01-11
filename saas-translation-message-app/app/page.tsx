@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import messageGif from '../images/landingPage/messagesGif.gif'
+import chatGif from '../images/landingPage/chat.gif'
+import blueChatGif from '../images/landingPage/blueMsg.gif'
+import oneChatLoader from '../images/landingPage/oneChatLoader.gif'
 
 export default function Home() {
   return (
@@ -45,15 +49,15 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-16 flow-root sm:mt-24">
+          <div className="mt-16 flow-root sm:mt-24 items-center">
             <div className="mt-2 rounded-xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-              {/* <Image
-                src={}
+              <Image
+                src={oneChatLoader}
                 alt="app-screenshot"
-                width={2432}
-                height={1442}
+                width={2550}
+                height={860}
                 className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
-              /> */}
+              />
             </div>
           </div>
         </div>
