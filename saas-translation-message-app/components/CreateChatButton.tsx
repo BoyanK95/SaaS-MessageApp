@@ -1,11 +1,14 @@
-'use client'
-import React from 'react'
-import { Button } from './ui/button'
+"use client";
+import React from "react";
+import { Button } from "./ui/button";
+import { MessageSquarePlusIcon } from "lucide-react";
 
 const CreateChatButton = () => {
   return (
-    <Button>CreateChatButton</Button>
-  )
-}
+    <Button variant={'ghost'}>
+      <MessageSquarePlusIcon />
+    </Button>
+  );
+};
 
-export default CreateChatButton
+export default CreateChatButton;
