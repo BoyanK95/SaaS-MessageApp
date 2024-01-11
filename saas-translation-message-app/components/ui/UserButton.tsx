@@ -16,7 +16,7 @@ import { Button } from "./button";
 import { signIn, signOut } from "next-auth/react";
 
 const UserButton = ({ session }: { session: Session }) => {
-  console.log(session);
+  //TODO Subscription
 
   if (!session) {
     return (
