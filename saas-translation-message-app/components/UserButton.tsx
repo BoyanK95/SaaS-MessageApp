@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import UserAvatar from "./UserAvatar";
 import { Session } from "next-auth";
-import { Button } from "./button";
+import { Button } from "./ui/button";
 import { signIn, signOut } from "next-auth/react";
 
 const UserButton = ({ session }: { session: Session }) => {
