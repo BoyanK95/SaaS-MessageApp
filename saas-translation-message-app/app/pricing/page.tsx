@@ -16,10 +16,15 @@ const PricingPage = () => {
           </p>
         </div>
         <div className="relative mt-6">
-          <p className="mx-auto max-w-2xl text-lg text-blue-700 dark:text-blue-200">
+          <p className="mx-auto max-w-2xl text-lg text-gray-700 dark:text-blue-200 font-semibold">
             Where 99% sure we have a plan to match your needs
           </p>
          <SvgEllipse />
+        </div>
+      </div>
+      <div className="flow-root bg-white pb-24 sm:pb-32">
+        <div className="-mt-80">
+            {/* PricingCards */}
         </div>
       </div>
     </div>
