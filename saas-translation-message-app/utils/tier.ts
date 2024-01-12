@@ -1,6 +1,6 @@
 import { Tier } from "@/types/tierType";
 
-const tier: Tier[] = [
+export const tier: Tier[] = [
   {
     name: "Starter",
     id: null,
