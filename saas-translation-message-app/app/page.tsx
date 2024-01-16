@@ -9,7 +9,7 @@ import oneChatLoader from "../images/landingPage/oneChatLoader.gif";
 export default function Home() {
   return (
     <main className="">
-      <div className="relative isolate pt-14 dark:bg-gray-900">
+      <div className="relative isolate pt-24 dark:bg-gray-900">
         <div
           className="absolute inset-x-0 top-28 -z-10 transform-gpu overflow-hidden blur-3xl"
           aria-hidden="true"
