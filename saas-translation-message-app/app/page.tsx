@@ -23,7 +23,7 @@ export default function Home() {
           ></div>
         </div>
 
-        <div className="py-12 xm-py-20 lg:pb-40">
+        <div className="py-12 h-screen xm-py-20 lg:pb-40">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="text-2xl font-bold">
               Chat with Anyone, anywhere, crypted and{" "}
@@ -51,7 +51,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
+          {/* 
           <div className="mt-16 flow-root sm:mt-24 items-center">
             <div className="mt-2 rounded-xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
               <Image
@@ -63,7 +63,7 @@ export default function Home() {
                 className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </main>
