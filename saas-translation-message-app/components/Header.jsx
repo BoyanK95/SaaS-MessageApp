@@ -25,7 +25,7 @@ async function Header() {
               <CreateChatButton />
             </>
           ) : (
-            <Link href={"/pricing"} prefix={false}>
+            <Link href={"/pricing"} prefix={'false'}>
               Pricing
             </Link>
           )}
