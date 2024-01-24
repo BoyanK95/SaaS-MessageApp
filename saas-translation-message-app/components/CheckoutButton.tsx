@@ -17,12 +17,11 @@ const CheckoutButton = () => {
     const docRef = await addDoc(
       collection(db, "customers", session.user.id, "checkout_sessions"),
       {
-        price: "price_1ObSlxE5eMXbZ5255mf8vIdm",
+        price: "price_1OblWZE5eMXbZ525s7QMit0J",
         success_url: window.location.origin,
         cancel_url: window.location.origin,
       }
     );
-    console.log("Clicked Checkout Session");
     // Stripe extension on firebase will create a checkout session
     return onSnapshot(docRef, (snap) => {
       const data = snap.data();
