@@ -20,7 +20,7 @@ export const tier: Tier[] = [
     name: "Pro",
     id: "si_OnLcsNMwqsZx",
     href: "#",
-    priceMonthly: 2.99,
+    priceMonthly: 1.99,
     currency: "Euro",
     desription: "Unlock the Full Potential with Pro!",
     features: [
