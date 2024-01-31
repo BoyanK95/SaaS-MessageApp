@@ -57,6 +57,46 @@ yarn dev
 
 Your app should now start locally running on [localhost:3000](http://localhost:3000)
 
+# Authentication with NextAuth and Firebase (Google Login)
+
+To set up authentication with NextAuth and Firebase (Google Login), follow these steps:
+
+1. Install the required packages:
+
+   ```bash
+   npm install next-auth firebase
+   # or
+   yarn add next-auth firebase
+
+2. Create a NextAuth configuration file (e.g., next-auth.config.js) and configure the provider for Google:
+
+```bash
+// next-auth.config.js
+
+import NextAuth from 'next-auth';
+import Providers from 'next-auth/providers';
+
+export default NextAuth({
+  providers: [
+    Providers.Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    // Add other providers if needed
+  ],
+  // Add additional NextAuth configurations as required
+});
+```
+Set up environment variables in your .env.local file:
+
+```bash
+env
+Copy code
+# Google OAuth
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+Replace your-google-client-id and your-google-client-secret with your Google OAuth credentials.
+```
 
 # Usage
 ## Overview
