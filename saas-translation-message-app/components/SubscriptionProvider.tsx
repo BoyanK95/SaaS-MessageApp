@@ -24,16 +24,20 @@ const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({
       return;
     }
 
-    return onSnapshot(subscriptionRef(session.user.id), (snapshot) => {
-      if (snapshot.empty) {
-        setSubscription(null);
-        console.log("User has No subscription!");
-        //TODO set no subscription
-      } else {
-        console.log("User has subscription");        
-        setSubscription(snapshot.docs[0].data() as Subscription);
-      }
-    });
+    return onSnapshot(
+      subscriptionRef(session.user.id),
+      (snapshot) => {
+        if (snapshot.empty) {
+          setSubscription(null);
+          console.log("User has No subscription!");
+          //TODO set no subscription
+        } else {
+          console.log("User has subscription");
+          setSubscription(snapshot.docs[0].data() as Subscription);
+        }
+      },
+      (errpr) => console.log("You have an Error!", errpr)
+    );
   }, [session, setSubscription]);
 
   return <>{children}</>;
