@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/firebase";
-import { RotatingLines } from "react-loader-spinner";
+import LoadingButton from "./LoadingButton";
 
 const CheckoutButton = () => {
   const { data: session } = useSession();
@@ -52,10 +52,7 @@ const CheckoutButton = () => {
         className="mt-10 rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white dark:text-whte hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:bg-gray-500"
       >
         {isLoading ? (
-          <div className="flex justify-center gap-5">
-            <RotatingLines width="18" strokeColor="white" />
-            <p className="">Loading...</p>
-          </div>
+          <LoadingButton />
         ) : (
           "Sing up"
         )}
