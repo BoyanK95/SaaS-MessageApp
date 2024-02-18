@@ -11,7 +11,7 @@ import SubscriptionProvider from "@/components/SubscriptionProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Deal Me Messaging App",
+  title: "Incognito Messaging App",
   description: "A great app to text each outher in every language",
 };
 
