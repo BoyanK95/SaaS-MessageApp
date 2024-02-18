@@ -25,9 +25,9 @@ export default function Home() {
 
         <div className="py-12 h-screen xm-py-20 lg:pb-40">
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-5xl font-bold pb-7">
               Chat with Anyone, anywhere, crypted and{" "}
-              <span className="text-indigo-300 text-3xl">discreet</span>
+              <span className="text-indigo-300 text-9xl">discreet</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
               You speak your language they speak their language{" "}

@@ -35,7 +35,6 @@ async function Header() {
           <UserButton session={session} />
         </div>
       </nav>
-      {/* Upgrade Banner */}
       <UpgradeBanner />
     </header>
   );

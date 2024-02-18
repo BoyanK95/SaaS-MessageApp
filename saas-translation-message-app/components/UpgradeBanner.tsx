@@ -9,7 +9,7 @@ const UpgradeBanner = () => {
   const subscription = useSubscriptionStore((state) => state.subscription);
   const router = useRouter();
 
-  if (subscription) {
+  if (subscription !== null) {
     return null;
   }
 
