@@ -27,13 +27,13 @@ export default function Home() {
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="md:text-5xl text-3xl font-bold pb-7">
               Chat with Anyone, anywhere, crypted and{" "}
-              <span className="text-indigo-300 md:text-9xl text-5xl">
+              <span className="text-indigo-700 dark:text-indigo-300 md:text-9xl text-5xl">
                 discreet
               </span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
               You speak your language they speak their language{" "}
-              <span className="text-indigo-600 dark:text-indigo-500">
+              <span className="text-indigo-600 dark:text-pink-300">
                 Let AI handle the translation.
               </span>
             </p>
