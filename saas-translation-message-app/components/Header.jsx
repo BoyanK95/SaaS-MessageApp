@@ -10,6 +10,7 @@ import UpgradeBanner from "./UpgradeBanner";
 
 async function Header() {
   const session = await getServerSession(authOptions);
+  console.log(session);
 
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-gray-900">
@@ -27,7 +28,7 @@ async function Header() {
               <CreateChatButton />
             </>
           ) : (
-            <Link href={"/pricing"} prefix={'false'}>
+            <Link href={"/pricing"} prefetch={false}>
               Pricing
             </Link>
           )}
