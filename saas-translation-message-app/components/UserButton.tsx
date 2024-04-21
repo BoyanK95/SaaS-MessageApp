@@ -36,7 +36,7 @@ const UserButton = ({ session }: { session: Session }) => {
       <DropdownMenuContent>
         <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {subscription?.status && (
+        {subscription?.status === "active" && (
           <>
             <DropdownMenuLabel className="text-md flex space-x-1 text-purple-500 animate-pulse">
               <GoStarFill size={19} />
