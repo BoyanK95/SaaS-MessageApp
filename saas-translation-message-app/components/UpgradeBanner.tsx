@@ -9,7 +9,9 @@ const UpgradeBanner = () => {
   const subscription = useSubscriptionStore((state) => state.subscription);
   const router = useRouter();
 
-  if (subscription !== null) {
+  const isActiveSubscription = subscription?.status === "active";
+
+  if (subscription === null || isActiveSubscription) {
     return null;
   }
 
