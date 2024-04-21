@@ -1,13 +1,11 @@
 import { generatePortalLink } from "@/actions/generatePortalLink";
 import React from "react";
+import BillingButton from "./BillingButton";
 
 const ManageAccountButton = () => {
   return (
-    <form
-      action={generatePortalLink}
-    //   className="mt-10 text-center rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white dark:text-whte hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:bg-gray-500"
-    >
-      <button type="submit">Manage Billing</button>
+    <form action={generatePortalLink}>
+      <BillingButton />
     </form>
   );
 };
