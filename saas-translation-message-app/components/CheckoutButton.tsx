@@ -5,10 +5,15 @@ import { useSession } from "next-auth/react";
 import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/firebase";
 import LoadingButton from "./LoadingButton";
+import { useSubscriptionStore } from "@/store/store";
+import ManageAccountButton from "./ManageAccountButton";
 
 const CheckoutButton = () => {
   const { data: session } = useSession();
   const [isLoading, setIsLoading] = useState(false);
+  const subscription = useSubscriptionStore((state) => state.subscription);
+
+  const isSubscribed = subscription?.status === "active";
 
   const createCheckoutSession = async () => {
     if (!session?.user.id) return;
@@ -46,17 +51,16 @@ const CheckoutButton = () => {
 
   return (
     <div className="flex flex-col space-y-2">
-      {/* TODO if subsribed show the user is subscribed */}
-      <button
-        onClick={() => createCheckoutSession()}
-        className="mt-10 rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white dark:text-whte hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:bg-gray-500"
-      >
-        {isLoading ? (
-          <LoadingButton />
-        ) : (
-          "Sing up"
-        )}
-      </button>
+      {isSubscribed ? (
+        <ManageAccountButton />
+      ) : (
+        <button
+          onClick={() => createCheckoutSession()}
+          className="mt-10 rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white dark:text-whte hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:bg-gray-500"
+        >
+          {isLoading ? <LoadingButton /> : "Sing up"}
+        </button>
+      )}
     </div>
   );
 };
