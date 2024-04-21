@@ -50,14 +50,11 @@ const CheckoutButton = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-2">
+    <div className="flex text-center flex-col space-y-2 mt-10 rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white dark:text-whte hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:bg-gray-500">
       {isSubscribed ? (
         <ManageAccountButton />
       ) : (
-        <button
-          onClick={() => createCheckoutSession()}
-          className="mt-10 rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white dark:text-whte hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:bg-gray-500"
-        >
+        <button onClick={() => createCheckoutSession()} className="">
           {isLoading ? <LoadingButton /> : "Sing up"}
         </button>
       )}

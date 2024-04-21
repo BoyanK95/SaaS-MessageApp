@@ -15,6 +15,7 @@ import { Button } from "./ui/button";
 import { signIn, signOut } from "next-auth/react";
 import { useSubscriptionStore } from "@/store/store";
 import { GoStarFill } from "react-icons/go";
+import ManageAccountButton from "./ManageAccountButton";
 
 const UserButton = ({ session }: { session: Session }) => {
   const subscription = useSubscriptionStore((state) => state.subscription);
@@ -44,7 +45,7 @@ const UserButton = ({ session }: { session: Session }) => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer">
-              Manage
+              <ManageAccountButton />
             </DropdownMenuItem>
             <DropdownMenuSeparator />
           </>
