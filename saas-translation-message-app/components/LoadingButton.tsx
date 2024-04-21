@@ -7,7 +7,7 @@ const LoadingButton = () => {
   return (
     <div className="flex justify-center gap-5">
     <RotatingLines width="18" strokeColor="white" />
-    <p className="">Loading...</p>
+    <p className="animate-pulse">Loading...</p>
   </div>
   )
 }
