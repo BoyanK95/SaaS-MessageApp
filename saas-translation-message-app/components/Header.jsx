@@ -20,8 +20,7 @@ async function Header() {
 
           {session ? (
             <>
-            {/* TODO replace with actual link when available */}
-              <Link href={`/building`} prefetch={false}>
+              <Link href={`/chat`} prefetch={false}>
                 <MessagesSquareIcon className="text-black dark:text-white" />
               </Link>
               <CreateChatButton />
