@@ -1,14 +1,46 @@
-'use client'
-import { ChatMembers } from '@/lib/converters/ChatMembers'
-import { useSession } from 'next-auth/react'
-import React from 'react'
+"use client";
 
-const ChatListRows = ({initialChats}: {initialChats: ChatMembers[]}) => {
-    const {data: session} = useSession()
+import {
+  ChatMembers,
+  chatMembersCollectionGroupRef,
+} from "@/lib/converters/ChatMembers";
+import { MessageSquare } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import CreateChatButton from "./CreateChatButton";
+import ChatlistRow from "./ChatlistRow";
+
+const ChatListRows = ({ initialChats }: { initialChats: ChatMembers[] }) => {
+  const { data: session } = useSession();
+
+  const [members, loading, error] = useCollectionData(
+    session && chatMembersCollectionGroupRef(session.user.id),
+    {
+      initialValue: initialChats,
+    }
+  );
+  console.log(members);
+
+  if (members?.length === 0) {
+    return (
+      <div className="flex flex-col justify-center items-center pt-40 space-y-2">
+        <MessageSquare className="h-10 w-10" />
+        <h1 className="text-5xl font-extralight">Welcome !</h1>
+        <h2 className="pb-10">
+          Lets get you started by creating your first chat!
+        </h2>
+        <CreateChatButton isLarge={true} />
+      </div>
+    );
+  }
 
   return (
-    <div>ChatListRows</div>
-  )
-}
+    <div>
+      {members?.map((member) => (
+        <ChatlistRow  key={member.chatId} chatId={member.chatId} />
+      ))}
+    </div>
+  );
+};
 
-export default ChatListRows
+export default ChatListRows;
