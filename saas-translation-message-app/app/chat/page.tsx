@@ -1,3 +1,4 @@
+import ChatList from "@/components/ChatList";
 import React from "react";
 
 type ChatsProps = {
@@ -12,7 +13,7 @@ const ChatsPage = ({ searchParams: { error } }: ChatsProps) => {
     <div>
       {/* Chat Permisson cat */}
 
-      {/* ChatList */}
+      <ChatList />
     </div>
   );
 };
