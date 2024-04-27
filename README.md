@@ -2,6 +2,9 @@
 
 Welcome to the Incognito Translation Messaging App, a powerful application built with Next.js. This app combines the efficiency of Next.js with Shadcn for a stylish component library, Next Auth for authentication, and Zustang for state management. It provides a seamless experience for translating and messaging within a Software as a Service (Incognito) environment.
 
+<img width="1728" alt="Screenshot 2024-04-27 at 21 33 23" src="https://github.com/BoyanK95/SaaS-MessageApp/assets/92653208/ecca61f7-482e-457e-b30c-33717067e152">
+
+
 ## Table of Contents
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -103,6 +106,7 @@ Replace your-google-client-id and your-google-client-secret with your Google OAu
 The Incognito Translation Messaging App is designed to facilitate multilingual communication in a secure and incognito manner. The application offers both free and paid pro memberships, unlocking additional features and enhancing the user experience.
 
 # Tiers and Pricing
+<img width="1728" alt="Screenshot 2024-04-27 at 21 35 34" src="https://github.com/BoyanK95/SaaS-MessageApp/assets/92653208/6b04e79e-78ba-471c-aa4f-3f129e5cc138">
 
 ## Tiers
 
