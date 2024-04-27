@@ -52,7 +52,7 @@ const PricingCards = ({ redirect }: { redirect: boolean }) => {
             {redirect ? (
               <Link
                 href={"/register"}
-                className="mt-8 rounded-md bg-indigo-600 px-3.5 py-2 text-center text-sm font-semibold focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:bg-gray-400 hover:bg-indigo-700"
+                className="mt-8 text-white rounded-md bg-indigo-600 px-3.5 py-2 text-center text-sm font-semibold focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:bg-gray-400 hover:bg-indigo-700"
               >
                 Get Started Today
               </Link>
