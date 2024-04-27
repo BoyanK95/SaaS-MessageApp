@@ -161,3 +161,6 @@ The Incognito Translation Messaging App is designed to facilitate multilingual c
 ## Contributing
 
 If you'd like to contribute to this project, please follow the [contribution guidelines](CONTRIBUTING.md).
+
+# Thank you for your atention 
+### if you like the project please don't be affraid to give it a Star ⭐
