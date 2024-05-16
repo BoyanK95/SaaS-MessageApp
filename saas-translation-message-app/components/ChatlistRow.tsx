@@ -2,7 +2,7 @@
 
 const ChatlistRow = ({chatId}: {chatId: string}) => {
   return (
-    <div>ChatlistRow</div>
+    <div>{chatId}</div>
   )
 }
 
