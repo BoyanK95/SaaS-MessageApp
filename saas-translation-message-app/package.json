@@ -27,6 +27,7 @@
     "node": "^21.2.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-firebase-hooks": "^5.1.1",
     "react-loader-spinner": "^6.1.6",
     "stripe": "^14.13.0",
     "tailwind-merge": "^2.2.0",
