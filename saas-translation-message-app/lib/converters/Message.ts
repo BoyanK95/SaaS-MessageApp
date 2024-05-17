@@ -34,7 +34,9 @@ export interface Message {
 const messageConverter: FirestoreDataConverter<Message> = {
   toFirestore: function (message: Message): DocumentData {
     return {
-      ...message,
+      input: message.input,
+      timestamp: message.timestamp,
+      user: message.user,
     };
   },
 

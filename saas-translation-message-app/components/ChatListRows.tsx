@@ -8,7 +8,7 @@ import { MessageSquare } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import CreateChatButton from "./CreateChatButton";
-import ChatlistRow from "./ChatlistRow";
+import ChatListRow from "./ChatListRow";
 
 const ChatListRows = ({ initialChats }: { initialChats: ChatMembers[] }) => {
   const { data: session } = useSession();
@@ -19,8 +19,9 @@ const ChatListRows = ({ initialChats }: { initialChats: ChatMembers[] }) => {
       initialValue: initialChats,
     }
   );
+  console.log('members');
   console.log(members);
-
+  
   if (members?.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center pt-40 space-y-2">
@@ -37,7 +38,7 @@ const ChatListRows = ({ initialChats }: { initialChats: ChatMembers[] }) => {
   return (
     <div>
       {members?.map((member) => (
-        <ChatlistRow  key={member.chatId} chatId={member.chatId} />
+        <ChatListRow  key={member.chatId} chatId={member.chatId} />
       ))}
     </div>
   );
