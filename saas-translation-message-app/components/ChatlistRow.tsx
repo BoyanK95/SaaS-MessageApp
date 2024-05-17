@@ -20,7 +20,7 @@ const ChatListRow = ({ chatId }: { chatId: string }) => {
     return chatId.substring(0, n);
   }
 
-  const row = (message?: Message) => (
+  const messageRow = (message?: Message) => (
     <div
       key={chatId}
       onClick={() => router.push(`/chat/${chatId}`)}
@@ -58,8 +58,8 @@ const ChatListRow = ({ chatId }: { chatId: string }) => {
   return (
     <div>
       {loading && <ChatListRowSkeleton />}
-      {messages?.length === 0 && !loading && row()}
-      {messages && messages.map((message) => row(message))}
+      {messages?.length === 0 && !loading && messageRow()}
+      {messages && messages.map((message) => messageRow(message))}
     </div>
   );
 };
