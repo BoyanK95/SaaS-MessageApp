@@ -16,6 +16,12 @@ import {
 } from "./ui/select";
 import LoadingButton from "./LoadingButton";
 import Link from "next/link";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 const LanguageSelect = () => {
   const [language, setLanguage, getLanguages, getNotSuportedLanguages] =
@@ -44,20 +50,35 @@ const LanguageSelect = () => {
             ) : (
               <>
                 {getLanguages(hasSubscription).map((language) => (
-                  <SelectItem key={language} value={language}>
+                  <SelectItem key={language} value={language} className="cursor-pointer">
                     {LanguageSupportedMap[language]}
                   </SelectItem>
                 ))}
                 {getNotSuportedLanguages(hasSubscription).map((language) => (
                   <Link href={"/register"} key={language}>
-                    <SelectItem
-                      key={language}
-                      value={language}
-                      disabled
-                      className="bg-gray-300/5 text-gray-500 dark:text-white py-2 my-2"
-                    >
-                      {LanguageSupportedMap[language]}
-                    </SelectItem>
+                    <div>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <SelectItem
+                              key={language}
+                              value={language}
+                              disabled
+                              className="bg-gray-300/5 text-gray-500 dark:text-white py-2 my-2"
+                            >
+                              {LanguageSupportedMap[language]}
+                            </SelectItem>
+                          </TooltipTrigger>
+                          <TooltipContent
+                            side="top"
+                            sideOffset={20}
+                            className="z-50 absolute text-center text-sm"
+                          >
+                            Subscribe to unlock
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
                   </Link>
                 ))}
               </>
