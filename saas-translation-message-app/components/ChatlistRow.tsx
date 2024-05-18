@@ -6,12 +6,16 @@ import ChatListRowSkeleton from "./ChatListRowSkeleton";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import UserAvatar from "./UserAvatar";
+import { useLanguageStore } from "@/store/store";
 
 const ChatListRow = ({ chatId }: { chatId: string }) => {
   const [messages, loading, error] = useCollectionData<Message>(
     limitedSortedMessagesRef(chatId)
   );
   const { data: session } = useSession();
+
+  const language = useLanguageStore((state) => state.language);
+
   const router = useRouter();
 
   console.log("messages", messages);
@@ -39,8 +43,7 @@ const ChatListRow = ({ chatId }: { chatId: string }) => {
                 .split(" "[0])}
         </p>
         <p className="text-gray-400 line-clamp-1">
-          {/* TODO fix with [language] when available */}
-          {message?.translated?.['en'] || 'Get the conversation started...'}
+          {message?.translated?.[language] || "Get the conversation started..."}
         </p>
       </div>
 
