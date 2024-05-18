@@ -36,8 +36,12 @@ interface LanguageState {
 }
 
 export const useLanguageStore = create<LanguageState>()((set, get) => ({
-  language: "en",
-  setLanguage: (language: LanguageSuported) => set({ language }),
+  language:
+    (sessionStorage.getItem("languageState") as LanguageSuported) || "en",
+  setLanguage: (language: LanguageSuported) => {
+    sessionStorage.setItem("languageState", language);
+    set({ language });
+  },
   getLanguages: (isSubscribed) => {
     const supportedLanguages = Object.keys(
       LanguageSupportedMap
