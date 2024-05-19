@@ -16,7 +16,8 @@ const ChatPage = async () => {
       {/* Chat members badge */}
 
       {/* Chat messages */}
-      <ChatInput />
+      
+      <ChatInput chatId="123" />
     </>
   );
 };
