@@ -14,6 +14,8 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useSession } from "next-auth/react";
+import { User, messagesRef } from "@/lib/converters/Message";
+import { addDoc, serverTimestamp } from "firebase/firestore";
 
 const formSchema = z.object({
   input: z.string().max(1000),
@@ -28,10 +30,29 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
       input: "",
     },
   });
+  console.log(chatId);
+  
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
+    if (!session?.user) return;
+    if (!data.input) return;
+
+    //TODO: limit creating chats for unsubscribed users
+    const user: User = {
+      id: session.user.id,
+      name: session.user.name!,
+      image: session.user.image!,
+      email: session.user.email!,
+    };
+    console.log("user", user);
+    addDoc(messagesRef(chatId), {
+      input: data.input,
+      timestamp: serverTimestamp(),
+      user: user,
+    });
+
     console.log(data);
-    // Add your chat input submission logic here
+    form.reset();
   };
 
   return (
