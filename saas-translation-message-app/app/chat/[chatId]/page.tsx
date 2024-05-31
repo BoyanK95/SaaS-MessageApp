@@ -6,8 +6,6 @@ import React from "react";
 const ChatPage = async () => {
   const session = await getServerSession(authOptions);
 
-  console.log("session");
-  console.log(session);
 
   return (
     <>
@@ -16,7 +14,7 @@ const ChatPage = async () => {
       {/* Chat members badge */}
 
       {/* Chat messages */}
-      
+
       <ChatInput chatId="123" />
     </>
   );

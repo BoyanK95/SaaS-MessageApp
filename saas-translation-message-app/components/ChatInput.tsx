@@ -13,12 +13,15 @@ import {
 } from "./ui/form";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { useSession } from "next-auth/react";
 
 const formSchema = z.object({
   input: z.string().max(1000),
 });
 
 const ChatInput = ({ chatId }: { chatId: string }) => {
+  const { data: session } = useSession();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,22 +35,34 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
   };
 
   return (
-    <div>
+    <div className="sticky bottom-0">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-x-2 p-2 flex rounded-t-xl max-w-4xl mx-auto bg-white border dark:bg-slate-800"
+        >
           <FormField
             control={form.control}
             name="input"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex-1">
                 <FormControl>
-                  <Input placeholder="Enter a message in ANY language..." {...field} />
+                  <Input
+                    className="bg-transparent border-none dark:placeholder:text-white/70 dark:text-white placeholder:text-gray-400 text-black focus:ring-0 focus-visible:outline-none"
+                    placeholder="Enter a message in ANY language..."
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Send</Button>
+          <Button
+            type="submit"
+            className="bg-violet-500 hover:bg-violet-600 text-white"
+          >
+            Send
+          </Button>
         </form>
       </Form>
     </div>
