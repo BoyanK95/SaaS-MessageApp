@@ -14,8 +14,16 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useSession } from "next-auth/react";
-import { User, messagesRef } from "@/lib/converters/Message";
-import { addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  User,
+  limitedMessagesRef,
+  messagesRef,
+} from "@/lib/converters/Message";
+import { addDoc, doc, getDocs, serverTimestamp } from "firebase/firestore";
+import { useSubscriptionStore } from "@/store/store";
+import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
+import { ToastAction } from "@radix-ui/react-toast";
 
 const formSchema = z.object({
   input: z.string().max(1000),
@@ -23,6 +31,9 @@ const formSchema = z.object({
 
 const ChatInput = ({ chatId }: { chatId: string }) => {
   const { data: session } = useSession();
+  const subscription = useSubscriptionStore((state) => state.subscription);
+  const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -30,14 +41,36 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
       input: "",
     },
   });
-  console.log(chatId);
-  
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     if (!session?.user) return;
     if (!data.input) return;
 
-    //TODO: limit creating chats for unsubscribed users
+    const isSubscriptionActive = subscription?.status === "active";
+
+    const messagesCount = (await getDocs(limitedMessagesRef(chatId))).docs.map(
+      (doc) => doc.data()
+    ).length;
+
+    console.log("messagesCount", messagesCount);
+
+    if (!isSubscriptionActive && messagesCount >= 100) {
+      toast({
+        title: "Message limit reached",
+        description:
+          "You have reached the limit of messages for your subscription. Please upgrade your subscription to continue sending messages.",
+        variant: "destructive",
+        action: (
+          <ToastAction
+            altText="upgrade"
+            onClick={() => router.push("/register")}
+          >
+            Upgrade to PRO
+          </ToastAction>
+        ),
+      });
+      return;
+    }
     const user: User = {
       id: session.user.id,
       name: session.user.name!,
