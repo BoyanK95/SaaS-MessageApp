@@ -44,7 +44,11 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     if (!session?.user) return;
-    if (!data.input) return;
+    if (!data.input.trim()) {
+      form.reset();
+      return;
+    }
+    const inputCoppy = data.input.trim();
 
     const isSubscriptionActive = subscription?.status === "active";
 
@@ -52,7 +56,9 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
       (doc) => doc.data()
     ).length;
 
+    //TODO delete logs
     console.log("messagesCount", messagesCount);
+    console.log("chatId", chatId);
 
     if (!isSubscriptionActive && messagesCount >= 100) {
       toast({
@@ -79,11 +85,12 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
     };
     console.log("user", user);
     addDoc(messagesRef(chatId), {
-      input: data.input,
+      input: inputCoppy,
       timestamp: serverTimestamp(),
       user: user,
     });
 
+    //TODO delete logs
     console.log(data);
     form.reset();
   };
