@@ -42,7 +42,10 @@ const ChatMessages = ({
       {messages?.map((message) => {
         const isSender = message.user.id === session?.user.id;
         return (
-          <div key={message.id} className="flex my-2 items-end">
+          <div
+            key={message.id}
+            className="flex my-2 items-end overflow-y-auto relative"
+          >
             <div
               className={`flex flex-col space-y-2 p-4 w-fit line-clamp-1 mx-2 rounded-lg ${
                 isSender
@@ -71,6 +74,7 @@ const ChatMessages = ({
           </div>
         );
       })}
+      <div ref={messagesEndRef} />
     </div>
   );
 };
