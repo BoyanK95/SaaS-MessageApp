@@ -100,7 +100,7 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-x-2 p-2 flex rounded-t-xl max-w-4xl mx-auto bg-white border dark:bg-slate-800"
+          className="space-x-2 p-3 flex rounded-t-xl mx-auto bg-white shadow-xl border dark:bg-slate-800"
         >
           <FormField
             control={form.control}
