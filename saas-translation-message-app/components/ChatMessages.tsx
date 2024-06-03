@@ -74,7 +74,7 @@ const ChatMessages = ({
           </div>
         );
       })}
-      <div ref={messagesEndRef} />
+      {messages?.length !== 0 && <div ref={messagesEndRef} />}
     </div>
   );
 };
