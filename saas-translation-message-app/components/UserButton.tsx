@@ -19,7 +19,6 @@ import ManageAccountButton from "./ManageAccountButton";
 
 const UserButton = ({ session }: { session: Session }) => {
   const subscription = useSubscriptionStore((state) => state.subscription);
-  console.log(subscription);
 
   if (!session) {
     return (

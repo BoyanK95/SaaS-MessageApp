@@ -1,14 +1,28 @@
-import React from 'react'
+import { authOptions } from "@/auth";
+import ChatInput from "@/components/ChatInput";
+import { getServerSession } from "next-auth";
+import React from "react";
 
-const ChatPage = () => {
+type ChatPageProps = {
+  params: {
+    chatId: string;
+  };
+};
+
+const ChatPage = async ({ params: { chatId } }: ChatPageProps) => {
+  const session = await getServerSession(authOptions);
+
   return (
     <>
-        {/* Admin controls */}
-        {/* Chat members badge */}
-        {/* Chat messages */}
-        {/* Chat Inout */}
-    </>
-  )
-}
+      {/* Admin controls */}
 
-export default ChatPage
+      {/* Chat members badge */}
+
+      {/* Chat messages */}
+
+      <ChatInput chatId={chatId} />
+    </>
+  );
+};
+
+export default ChatPage;
