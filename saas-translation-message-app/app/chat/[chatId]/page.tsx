@@ -21,19 +21,23 @@ const ChatPage = async ({ params: { chatId } }: ChatPageProps) => {
 
   return (
     <>
-      {/* Admin controls */}
+      <div className="flex flex-col h-screen">
+        {/* Admin controls */}
 
-      {/* Chat members badge */}
+        {/* Chat members badge */}
 
-      {/* Chat messages */}
-      <div className="flex-1">
-        <ChatMessages
-          chatId={chatId}
-          initialMessages={initialMessages}
-          session={session}
-        />
+        {/* Chat messages */}
+        <div className="flex-1 overflow-y-auto">
+          <ChatMessages
+            chatId={chatId}
+            initialMessages={initialMessages}
+            session={session}
+          />
+        </div>
+        <div className="sticky bottom-0">
+          <ChatInput chatId={chatId} />
+        </div>
       </div>
-      <ChatInput chatId={chatId} />
     </>
   );
 };

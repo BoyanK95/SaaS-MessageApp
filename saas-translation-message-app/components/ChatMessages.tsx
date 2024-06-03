@@ -31,7 +31,7 @@ const ChatMessages = ({
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, messagesEndRef]);
 
-  return <div>ChatMessages</div>;
+  return <div></div>;
 };
 
 export default ChatMessages;
