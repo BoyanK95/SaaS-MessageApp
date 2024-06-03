@@ -1,8 +1,10 @@
-'use client'
+"use client";
 
-import { Message } from '@/lib/converters/Message';
-import { Session } from 'next-auth';
-import React from 'react'
+import { Message, sortedMessagesRef } from "@/lib/converters/Message";
+import { useLanguageStore } from "@/store/store";
+import { Session } from "next-auth";
+import React, { createRef, useEffect } from "react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 type ChatMessagesProps = {
   chatId: string;
@@ -10,10 +12,26 @@ type ChatMessagesProps = {
   session: Session | null;
 };
 
-const ChatMessages = ({chatId, initialMessages, session}: ChatMessagesProps) => {
-  return (
-    <div>ChatMessages</div>
-  )
-}
+const ChatMessages = ({
+  chatId,
+  initialMessages,
+  session,
+}: ChatMessagesProps) => {
+  const language = useLanguageStore((state) => state.language);
+  const messagesEndRef = createRef<HTMLDivElement>();
 
-export default ChatMessages
+  const [messages, loading, error] = useCollectionData<Message>(
+    sortedMessagesRef(chatId),
+    {
+      initialValue: initialMessages,
+    }
+  );
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, messagesEndRef]);
+
+  return <div>ChatMessages</div>;
+};
+
+export default ChatMessages;
