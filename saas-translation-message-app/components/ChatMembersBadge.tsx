@@ -1,11 +1,15 @@
-'use client'
+"use client";
 
-import React from 'react'
+import { ChatMembers, chatMemberAdminRef } from "@/lib/converters/ChatMembers";
+import React from "react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
-const ChatMembersBadge = ({chatId}: {chatId: string}) => {
-  return (
-    <div>ChatMembersBadge</div>
-  )
-}
+const ChatMembersBadge = ({ chatId }: { chatId: string }) => {
+  const [members, loading, error] = useCollectionData<ChatMembers>(
+    chatMemberAdminRef(chatId)
+  );
 
-export default ChatMembersBadge
+  return <div>ChatMembersBadge</div>;
+};
+
+export default ChatMembersBadge;
