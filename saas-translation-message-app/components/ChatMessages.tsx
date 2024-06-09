@@ -37,16 +37,17 @@ const ChatMessages = ({
     <div className="p-5">
       {!loading && messages?.length === 0 && <EmptyChatMessagesHeader />}
 
-      {messages?.map((message) => {
-        const isSender = message.user.id === session?.user.id;
-        return (
-          <ChatMessageContainer
-            message={message}
-            isSender={isSender}
-            language={language}
-          />
-        );
-      })}
+      {messages &&
+        messages?.map((message) => {
+          const isSender = message.user.id === session?.user.id;
+          return (
+            <ChatMessageContainer
+              message={message}
+              isSender={isSender}
+              language={language}
+            />
+          );
+        })}
       {messages && messages?.length > 3 && <div ref={messagesEndRef} />}
     </div>
   );
