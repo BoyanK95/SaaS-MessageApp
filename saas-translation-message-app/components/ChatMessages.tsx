@@ -33,8 +33,6 @@ const ChatMessages = ({
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, messagesEndRef]);
 
-  console.log("messages", messages);
-
   return (
     <div className="p-5">
       {!loading && messages?.length === 0 && <EmptyChatMessagesHeader />}

@@ -50,8 +50,14 @@ export const addChatRef = (chatId: string, userId: string) => {
   );
 };
 
-export const chatMembersRef = (chatId: string, userId: string) => {
+export const chatMemberRef = (chatId: string, userId: string) => {
   return collection(db, "chats", chatId, "members", userId).withConverter(
+    chatMemberConverter
+  );
+};
+
+export const chatMembersRef = (chatId: string) => {
+  return collection(db, "chats", chatId, "members").withConverter(
     chatMemberConverter
   );
 };

@@ -19,8 +19,6 @@ const ChatListRows = ({ initialChats }: { initialChats: ChatMembers[] }) => {
       initialValue: initialChats,
     }
   );
-  console.log('members');
-  console.log(members);
   
   if (members?.length === 0) {
     return (
