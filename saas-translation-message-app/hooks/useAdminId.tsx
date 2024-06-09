@@ -15,7 +15,6 @@ const useAdminId = ({ chatId }: { chatId: string }) => {
       const adminId = (await getDocs(chatMemberAdminRef(chatId))).docs.map(
         (doc) => doc.id
       )[0];
-
       setAdminId(adminId);
     };
 

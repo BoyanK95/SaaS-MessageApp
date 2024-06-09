@@ -65,7 +65,7 @@ export const chatMembersRef = (chatId: string) => {
 export const chatMemberAdminRef = (chatId: string) => {
   return query(
     collection(db, "chats", chatId, "members"),
-    where("isAdming", "==", true)
+    where("isAdmin", "==", true)
   ).withConverter(chatMemberConverter);
 };
 

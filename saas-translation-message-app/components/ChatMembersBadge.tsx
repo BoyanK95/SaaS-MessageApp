@@ -16,8 +16,6 @@ const ChatMembersBadge = ({ chatId }: { chatId: string }) => {
   const adminId = useAdminId({ chatId });
 
   if (loading && !members) return <LoadingButton textCss="text-lg" />;
-  console.log("members", members);
-  console.log("chatId", chatId);
 
   return (
     !loading && (
