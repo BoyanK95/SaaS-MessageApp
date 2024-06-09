@@ -1,4 +1,5 @@
 import { authOptions } from "@/auth";
+import AdminControls from "@/components/AdminControls";
 import ChatInput from "@/components/ChatInput";
 import ChatMembersBadge from "@/components/ChatMembersBadge";
 import ChatMessages from "@/components/ChatMessages";
@@ -23,8 +24,7 @@ const ChatPage = async ({ params: { chatId } }: ChatPageProps) => {
   return (
     <>
       <div className="flex flex-col h-screen">
-        {/* Admin controls */}
-
+        <AdminControls chatId={chatId} />
         <ChatMembersBadge chatId={chatId} />
         <div className="flex-1 overflow-y-auto">
           <ChatMessages
