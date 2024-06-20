@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
-import { z } from "zod";
+import { set, z } from "zod";
 import { useToast } from "./ui/use-toast";
 import useAdminId from "@/hooks/useAdminId";
 import { useSubscriptionStore } from "@/store/store";
@@ -21,9 +21,10 @@ import {
 } from "./ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-import { getDocs } from "firebase/firestore";
-import { chatMembersRef } from "@/lib/converters/ChatMembers";
+import { getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+import { addChatRef, chatMembersRef } from "@/lib/converters/ChatMembers";
 import { ToastAction } from "./ui/toast";
+import { getUserByEmailRef } from "@/lib/converters/User";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -57,12 +58,10 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
       title: "Sending invite",
       description: "Please wait while we send the invite...",
     });
-
     //We need to get the users current chats to check if they are about to exceed the PRO plan
     const numOfUsersInChat = (await getDocs(chatMembersRef(chatId))).docs.map(
       (doc) => doc.data()
     ).length;
-
     //check if the user is about to exceed the PRO plan which is 3 chats
     const isPro =
       subscription?.role === "pro" && subscription.status === "active";
@@ -87,6 +86,50 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
       });
       return;
     }
+
+    const querySnapshot = await getDocs(getUserByEmailRef(values.email));
+
+    if (querySnapshot.empty) {
+      toast({
+        title: "User not found!",
+        description:
+          "Please enter an email of a registered user or resend invate once they have signed up.",
+        variant: "destructive",
+      });
+      return;
+    } else {
+      const user = querySnapshot.docs[0].data();
+      await setDoc(addChatRef(chatId, user.id), {
+        userId: user.id,
+        email: user.email || "",
+        timestamp: serverTimestamp(),
+        chatId: chatId,
+        isAdmin: false,
+        image: user.image || "",
+      })
+        .then(() => {
+          setOpen(false);
+
+          toast({
+            title: "Added to chat",
+            description: "User has been added to the chat successfully",
+            className: "bg-green-600 text-white",
+            duration: 3000,
+          });
+
+          setOpenInviteLink(true);
+        })
+        .catch(() => {
+          toast({
+            title: "Error",
+            description: "Something went wrong, please try again",
+            variant: "destructive",
+          });
+
+          setOpen(false);
+        });
+    }
+    form.reset();
   }
 
   return (
