@@ -21,6 +21,9 @@ import {
 } from "./ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
+import { getDocs } from "firebase/firestore";
+import { chatMembersRef } from "@/lib/converters/ChatMembers";
+import { ToastAction } from "./ui/toast";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -54,6 +57,36 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
       title: "Sending invite",
       description: "Please wait while we send the invite...",
     });
+
+    //We need to get the users current chats to check if they are about to exceed the PRO plan
+    const numOfUsersInChat = (await getDocs(chatMembersRef(chatId))).docs.map(
+      (doc) => doc.data()
+    ).length;
+
+    //check if the user is about to exceed the PRO plan which is 3 chats
+    const isPro =
+      subscription?.role === "pro" && subscription.status === "active";
+
+    console.log("numOfUsersInChat", numOfUsersInChat);
+    console.log("isPro", isPro);
+
+    if (numOfUsersInChat >= 3 && !isPro) {
+      toast({
+        title: "Invite Failed",
+        description: "You are about to exceed the PRO plan limit of 3 chats!",
+        action: (
+          <ToastAction
+            altText="Upgrade"
+            onClick={() => {
+              router.push("/register");
+            }}
+          >
+            Upgrade to PRO
+          </ToastAction>
+        ),
+      });
+      return;
+    }
   }
 
   return (
