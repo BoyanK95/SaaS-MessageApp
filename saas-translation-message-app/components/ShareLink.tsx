@@ -2,7 +2,9 @@ import React, { Dispatch, SetStateAction } from "react";
 import { useToast } from "./ui/use-toast";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -10,6 +12,8 @@ import {
 import { Button } from "./ui/button";
 import { Copy } from "lucide-react";
 import { DialogDescription } from "@radix-ui/react-dialog";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 interface ShareLinkProps {
   isOpen: boolean;
@@ -58,6 +62,30 @@ const ShareLink = ({ isOpen, chatId, setIsOpen }: ShareLinkProps) => {
             can use this link
           </DialogDescription>
         </DialogHeader>
+        <div className="flex items-center space-x-2">
+          <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-only">
+              Link
+            </Label>
+            <Input id="link" readOnly defaultValue={linkToChat} />
+          </div>
+          <Button
+            type="submit"
+            onClick={() => coppyToClipboard()}
+            size="sm"
+            className="px-3"
+          >
+            <span className="sr-only">Copy</span>
+            <Copy className="w-5 h-5" />
+          </Button>
+        </div>
+        <DialogFooter className="sm:justify-start justify-center">
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Close
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

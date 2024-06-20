@@ -175,7 +175,10 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
                     </FormItem>
                   )}
                 />
-                <Button className="ml-auto sm:w-fit w-full hover:bg-green-500" type="submit">
+                <Button
+                  className="ml-auto sm:w-fit w-full hover:bg-green-500"
+                  type="submit"
+                >
                   Add To Chat
                 </Button>
               </form>
@@ -183,7 +186,11 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
           </DialogContent>
         </Dialog>
 
-        <ShareLink isOpen={openInviteLink} setIsOpen={setOpenInviteLink} chatId={chatId}/>
+        <ShareLink
+          isOpen={openInviteLink}
+          setIsOpen={setOpenInviteLink}
+          chatId={chatId}
+        />
       </>
     )
   );
