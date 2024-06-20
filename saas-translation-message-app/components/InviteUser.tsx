@@ -25,6 +25,7 @@ import { getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 import { addChatRef, chatMembersRef } from "@/lib/converters/ChatMembers";
 import { ToastAction } from "./ui/toast";
 import { getUserByEmailRef } from "@/lib/converters/User";
+import ShareLink from "./ShareLink";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -137,7 +138,7 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
       <>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button>
+            <Button className="bg-green-600 hover:bg-green-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:text-white">
               <PlusCircleIcon className="mr-1 cursor-pointer" />
               Add User to Chat
             </Button>
@@ -147,7 +148,7 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
               <DialogTitle>Add User to Chat</DialogTitle>
               <DialogDescription>
                 Simply enter another users email address to invite them to this
-                chat!{" "}
+                chat{" "}
                 <span className="text-indigo-600 font-bold">
                   (Note: they must be registered!)
                 </span>
@@ -174,13 +175,22 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
                     </FormItem>
                   )}
                 />
-                <Button className="ml-auto sm:w-fit w-full" type="submit">
+                <Button
+                  className="ml-auto sm:w-fit w-full hover:bg-green-500"
+                  type="submit"
+                >
                   Add To Chat
                 </Button>
               </form>
             </Form>
           </DialogContent>
         </Dialog>
+
+        <ShareLink
+          isOpen={openInviteLink}
+          setIsOpen={setOpenInviteLink}
+          chatId={chatId}
+        />
       </>
     )
   );
