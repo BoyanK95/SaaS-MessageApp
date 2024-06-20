@@ -4,6 +4,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -11,7 +12,6 @@ import {
 } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { Copy } from "lucide-react";
-import { DialogDescription } from "@radix-ui/react-dialog";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 
@@ -79,7 +79,7 @@ const ShareLink = ({ isOpen, chatId, setIsOpen }: ShareLinkProps) => {
             <Copy className="w-5 h-5" />
           </Button>
         </div>
-        <DialogFooter className="sm:justify-start justify-center">
+        <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
             <Button type="button" variant="secondary">
               Close
