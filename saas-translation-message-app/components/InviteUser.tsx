@@ -19,7 +19,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { Form } from "./ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { Input } from "./ui/input";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -42,13 +43,26 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
     },
   });
 
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!session?.user.id) return;
+    if (!values.email.trim()) {
+      form.reset();
+      return;
+    }
+
+    toast({
+      title: "Sending invite",
+      description: "Please wait while we send the invite...",
+    });
+  }
+
   return (
     adminId === session?.user.id && (
       <>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button>
-              <PlusCircleIcon className="mr-1" />
+              <PlusCircleIcon className="mr-1 cursor-pointer" />
               Add User to Chat
             </Button>
           </DialogTrigger>
@@ -64,8 +78,29 @@ const InviteUser = ({ chatId }: { chatId: string }) => {
               </DialogDescription>
             </DialogHeader>
             <Form {...form}>
-              <form>
-                
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="flex flex-col space-y-2"
+              >
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          className="bg-transparent border-none dark:placeholder:text-white/70 dark:text-white placeholder:text-gray-400 text-black focus:ring-0 focus-visible:outline-none"
+                          placeholder="Enter a valid email address..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button className="ml-auto sm:w-fit w-full" type="submit">
+                  Add To Chat
+                </Button>
               </form>
             </Form>
           </DialogContent>
