@@ -24,7 +24,19 @@ const DeleteChatButton = ({ chatId }: { chatId: string }) => {
   const router = useRouter();
   const adminId = useAdminId({ chatId });
 
-  const handleDeleteChat = async() => {
+  const handleDeleteChat = async () => {
+    if (session?.user.id !== adminId) {
+        setOpen(false);
+      return;
+    }
+
+    toast({
+      title: "Deleting Chat",
+      description: "Please wait while we delete the chat...",
+      className: "bg-green-600 text-white",
+    });
+    console.log("Deleteing chat", chatId);
+
     // if (session?.user.id === adminId) {
     //   router.push("/dashboard");
     //   toast({
