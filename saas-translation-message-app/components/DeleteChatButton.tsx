@@ -26,7 +26,7 @@ const DeleteChatButton = ({ chatId }: { chatId: string }) => {
 
   const handleDeleteChat = async () => {
     if (session?.user.id !== adminId) {
-        setOpen(false);
+      setOpen(false);
       return;
     }
 
@@ -35,16 +35,36 @@ const DeleteChatButton = ({ chatId }: { chatId: string }) => {
       description: "Please wait while we delete the chat...",
       className: "bg-green-600 text-white",
     });
-    console.log("Deleteing chat", chatId);
 
-    // if (session?.user.id === adminId) {
-    //   router.push("/dashboard");
-    //   toast({
-    //     title: "Chat Deleted",
-    //     description: "The chat has been deleted",
-    //     className: "bg-green-600 text-white",
-    //   });
-    // }
+    await fetch(`api/chat/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chatId,
+      }),
+    })
+      .then((res) => {
+        toast({
+          title: "Success",
+          description: "The chat has been deleted!",
+          className: "bg-green-600 text-white",
+          duration: 3000,
+        });
+        router.replace("/chat");
+      })
+      .catch((error) => {
+        console.error(error.message);
+
+        toast({
+          title: "Error",
+          description: "Something went wrong!",
+          className: "bg-red-600 text-white",
+          duration: 3000,
+        });
+      })
+      .finally(() => setOpen(false));
   };
 
   return (
