@@ -8,7 +8,7 @@ import { MessageSquare } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import CreateChatButton from "./CreateChatButton";
-import ChatListRow from "./ChatListRow";
+import ChatListRow from "./ChatlistRow";
 
 const ChatListRows = ({ initialChats }: { initialChats: ChatMembers[] }) => {
   const { data: session } = useSession();

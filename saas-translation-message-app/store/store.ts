@@ -38,9 +38,10 @@ interface LanguageState {
 export const useLanguageStore = create<LanguageState>()((set, get) => ({
   language:
     //TODO might casue problems after deploy, must check after deployment
-    (sessionStorage.getItem("languageState") as LanguageSuported) || "en",
+    // (sessionStorage.getItem("languageState") as LanguageSuported) || "en",
+    'en',
   setLanguage: (language: LanguageSuported) => {
-    sessionStorage.setItem("languageState", language);
+    // sessionStorage.setItem("languageState", language);
     set({ language });
   },
   getLanguages: (isSubscribed) => {
