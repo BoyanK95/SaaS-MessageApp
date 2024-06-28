@@ -36,7 +36,7 @@ const DeleteChatButton = ({ chatId }: { chatId: string }) => {
       className: "bg-green-600 text-white",
     });
 
-    await fetch(`api/chat/delete`, {
+    await fetch(`/api/chat/delete`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

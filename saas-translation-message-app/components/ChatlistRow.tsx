@@ -18,8 +18,6 @@ const ChatListRow = ({ chatId }: { chatId: string }) => {
 
   const router = useRouter();
 
-  console.log("messages", messages);
-
   function prettyUUID(n: number = 5) {
     return chatId.substring(0, n);
   }

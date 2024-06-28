@@ -56,10 +56,6 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
       (doc) => doc.data()
     ).length;
 
-    //TODO delete logs
-    console.log("messagesCount", messagesCount);
-    console.log("chatId", chatId);
-
     if (!isSubscriptionActive && messagesCount >= 100) {
       toast({
         title: "Message limit reached",
@@ -83,15 +79,11 @@ const ChatInput = ({ chatId }: { chatId: string }) => {
       image: session.user.image!,
       email: session.user.email!,
     };
-    console.log("user", user);
     addDoc(messagesRef(chatId), {
       input: inputCoppy,
       timestamp: serverTimestamp(),
       user: user,
     });
-
-    //TODO delete logs
-    console.log(data);
     form.reset();
   };
 
