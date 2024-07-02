@@ -12,17 +12,19 @@ import {
 import UserAvatar from "./UserAvatar";
 import { Session } from "next-auth";
 import { Button } from "./ui/button";
-import { signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { useSubscriptionStore } from "@/store/store";
 import { GoStarFill } from "react-icons/go";
 import ManageAccountButton from "./ManageAccountButton";
+import { useRouter } from "next/navigation";
 
 const UserButton = ({ session }: { session: Session }) => {
   const subscription = useSubscriptionStore((state) => state.subscription);
+  const router = useRouter();
 
   if (!session) {
     return (
-      <Button variant={"outline"} onClick={() => signIn()}>
+      <Button variant={"outline"} onClick={() => router.push("/sign-in")}>
         Sign in
       </Button>
     );

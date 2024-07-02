@@ -4,24 +4,64 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { signIn, useSession } from "next-auth/react";
+import WelcomeHeader from "@/components/WelcomeHeader";
+import { useRouter } from "next/navigation";
+import WelcomeRedirectHeader from "@/components/WelcomeRedirectHeader";
 
 export default function Component() {
   const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter();
+  const session = useSession();
+
+  //TODO re-write handleLogIn and handleSignUp functions
+  const handleLogIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        // redirect: false,
+      });
+      console.log(result);
+      if (result?.ok) {
+        router.replace("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+    if (result?.ok) {
+      window.location.href = "/";
+    }
+  };
+
+  if (session) {
+    return <WelcomeRedirectHeader link="chat" btnText="Go to Chats" />;
+  }
+
   return (
     <div className="flex min-h-[100dvh] items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-md space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-foreground">
-            Welcome to{" "}
-            <span className="text-4xl text-blue-500 dark:text-indigo-400">
-              Incognito
-            </span>
-          </h2>
-        </div>
+        <WelcomeHeader />
         <div className="bg-card rounded-lg shadow-lg">
           <div className="px-6 py-8 sm:px-10">
             {isLogin ? (
-              <div>
+              <form onSubmit={handleLogIn}>
                 <div className="space-y-6">
                   <div>
                     <Label htmlFor="email">Email address</Label>
@@ -51,11 +91,13 @@ export default function Component() {
                   </div>
                 </div>
                 <div className="mt-6">
-                  <Button className="w-full">Login</Button>
+                  <Button type="submit" className="w-full">
+                    Login
+                  </Button>
                 </div>
-              </div>
+              </form>
             ) : (
-              <div>
+              <form onSubmit={handleSignUp}>
                 <div className="space-y-6">
                   <div>
                     <Label htmlFor="name">Name</Label>
@@ -97,9 +139,11 @@ export default function Component() {
                   </div>
                 </div>
                 <div className="mt-6">
-                  <Button className="w-full">Register</Button>
+                  <Button type="submit" className="w-full">
+                    Register
+                  </Button>
                 </div>
-              </div>
+              </form>
             )}
           </div>
           <div className="border-t border-muted px-6 py-4 text-center text-sm">
