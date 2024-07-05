@@ -8,9 +8,12 @@ import { signIn, useSession } from "next-auth/react";
 import WelcomeHeader from "@/components/WelcomeHeader";
 import { useRouter } from "next/navigation";
 import WelcomeRedirectHeader from "@/components/WelcomeRedirectHeader";
+import { FaGoogle } from "react-icons/fa";
+import GoogleLogin from "@/components/GoogleLogin";
 
 export default function Component() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
+
   const router = useRouter();
   const session = useSession();
 
@@ -60,7 +63,7 @@ export default function Component() {
         <WelcomeHeader />
         <div className="bg-card rounded-lg shadow-lg">
           <div className="px-6 py-8 sm:px-10">
-            {isLogin ? (
+            {isLoginMode ? (
               <form onSubmit={handleLogIn}>
                 <div className="space-y-6">
                   <div>
@@ -147,15 +150,20 @@ export default function Component() {
             )}
           </div>
           <div className="border-t border-muted px-6 py-4 text-center text-sm">
+            <div>
+              <GoogleLogin />
+            </div>
             <span className="text-muted-foreground">
-              {isLogin ? "Don't have an account?" : "Already have an account?"}
+              {isLoginMode
+                ? "Don't have an account?"
+                : "Already have an account?"}
             </span>{" "}
             <Button
               variant="link"
-              onClick={() => setIsLogin((prev) => !prev)}
+              onClick={() => setIsLoginMode((prev) => !prev)}
               className="font-medium text-primary hover:text-primary/90"
             >
-              {isLogin ? "Register" : "Login"}
+              {isLoginMode ? "Register" : "Login"}
             </Button>
           </div>
         </div>
