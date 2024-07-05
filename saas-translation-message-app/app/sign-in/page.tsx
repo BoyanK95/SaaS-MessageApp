@@ -50,7 +50,7 @@ export default function Component() {
     }
   };
 
-  if (session) {
+  if (!session) {
     return <WelcomeRedirectHeader link="chat" btnText="Go to Chats" />;
   }
 
