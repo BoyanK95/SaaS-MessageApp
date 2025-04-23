@@ -1,8 +1,11 @@
-import Image from "next/image";
+"use client";
+import { useSubscriptionStore } from "@/store/store";
 import Link from "next/link";
 import React from "react";
 
 export default function Home() {
+  const subscription = useSubscriptionStore((state) => state.subscription);
+
   return (
     <main className="">
       <div className="relative isolate pt-24 dark:bg-gray-900">
@@ -41,12 +44,14 @@ export default function Home() {
                 Get started
               </Link>
               <br />
-              <Link
-                href={"/pricing"}
-                className="text-sm font-semibold hover:text-gray-500 dark:hover:text-gray-200  leading-6 text-gray-900 dark:text-gray-300"
-              >
-                View Pricing <span aria-hidden="true">.</span>
-              </Link>
+              {!subscription && (
+                <Link
+                  href={"/pricing"}
+                  className="text-sm font-semibold hover:text-gray-500 dark:hover:text-gray-200  leading-6 text-gray-900 dark:text-gray-300"
+                >
+                  View Pricing <span aria-hidden="true">.</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>
